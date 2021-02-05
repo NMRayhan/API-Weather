@@ -3,6 +3,9 @@ const submit = document.querySelector('.button');
 const cityName = document.getElementById('City');
 const weatherValue = document.getElementById('Weather');
 const weatherType = document.getElementById('WeatherType');
+document.getElementById('Modal').style.display = 'none'
+
+
 
 submit.addEventListener('click', function () {
     fetch('https://api.openweathermap.org/data/2.5/weather?q=' + inputValue.value + '&appid=f14c4e5875d9a84bf34c126d6f6844ec')
@@ -16,7 +19,10 @@ submit.addEventListener('click', function () {
             var iconcode = json.weather[0].icon;
             var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
             document.getElementById('wicon').src = iconurl;
-           
-        });
+
+        })
+        .catch(err => {
+            alert("You can call by city name or city name, state code and country code. Please note that searching by states available only for the USA locations.")
+        })
 
 })
